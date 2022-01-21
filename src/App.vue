@@ -1,11 +1,20 @@
 <template>
   <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/movies">Movies</router-link> |
     <router-link to="/about">About</router-link> |
+    <router-link to="/movies">Movies</router-link> |
   </div>
   <router-view />
 </template>
+<script>
+import { provide } from "@vue/runtime-core";
+import store from "./store/incremente";
+export default {
+  setup() {
+    provide("store", store);
+  }
+};
+</script>
 
 <style>
 #app {

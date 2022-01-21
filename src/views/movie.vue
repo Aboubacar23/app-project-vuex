@@ -38,9 +38,6 @@ export default {
     Review
   },
   created() {
-    // mutation;
-    // this.$store.commit("setCurrentMovieVersionMutation", this.id);
-    // action;
     this.$store.dispatch("setCurrentMovie", this.id);
   },
   computed: {
