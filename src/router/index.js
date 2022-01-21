@@ -9,11 +9,18 @@ const routes = [{
         component: Home
     },
     {
+        path: '/notes',
+        name: 'notes',
+        component: () =>
+            import ('../views/Notes.vue')
+    },
+    {
         path: '/movies',
         name: 'movies',
         component: () =>
             import ('../views/movies')
-    }, {
+    },
+    {
         name: 'movie',
         path: '/movie/:id',
         component: Movie,
