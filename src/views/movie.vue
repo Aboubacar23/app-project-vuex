@@ -11,7 +11,6 @@
     <router-link :to="{ name: 'movies' }" class="movie__back"
       >← Retour</router-link
     >
-    {{ movie.id }} {{ movie.title }}
     <h1 class="movie__title">{{ movie.title }}</h1>
     <div class="movie__note">
       <span
