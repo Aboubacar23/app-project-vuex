@@ -9,10 +9,12 @@
 </template>
 <script>
 import { provide } from "@vue/runtime-core";
-import store from "./store/incremente";
+import store1 from "./store/incremente";
+import store from "./store/index.js";
 export default {
   setup() {
     provide("store", store);
+    provide("store1", store1);
   }
 };
 </script>

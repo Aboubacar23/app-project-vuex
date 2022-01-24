@@ -4,6 +4,9 @@ import { SET_NOTE } from '../store/mutations-types';
 // Create a new store instance.
 const store = createStore({
     state: {
+        titleHeaders: 'Mes Notes',
+        title: "",
+        notes: [],
         currentMovie: {},
         movies: [{
                 id: 1,
@@ -38,6 +41,10 @@ const store = createStore({
         },
         getCurrentMovie(state) {
             return state.currentMovie;
+        },
+
+        totalNotes(state) {
+            return state.notes.length;
         }
     },
     mutations: {
@@ -55,6 +62,11 @@ const store = createStore({
         },
         [SET_NOTE](state, note) {
             state.currentMovie.note = note;
+        },
+
+        //la mutaions de notes
+        addNote(state, title) {
+            state.notes.push(title);
         }
     },
     actions: {
@@ -66,6 +78,11 @@ const store = createStore({
                 }
             })
             commit('setCurrentMovie', movieFound);
+        },
+
+        //l'action save note
+        saveNote({ commit }, title) {
+            commit('addNote', title);
         }
     }
 })

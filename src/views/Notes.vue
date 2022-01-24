@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>LES NOTES</h1>
+    <h1>{{ $store.state.titleHeaders }}</h1>
     <ol>
       <li v-for="(note, index) in notes" :key="index">{{ note }}</li>
     </ol>
@@ -9,25 +9,26 @@
   </div>
 </template>
 <script>
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import { useStore } from "vuex";
 export default {
   setup() {
     const store = useStore();
+    const title = ref("");
     const notes = computed(() => store.state.notes);
     const totalNotes = computed(() => store.getters.totalNotes);
-    const title = ref("");
 
     function save() {
+      console.log("titre de la note : " + title.value);
       store.dispatch("saveNote", title.value);
+      console.log(notes.value);
       title.value = "";
     }
 
     return {
+      save,
       notes,
-      title,
-      totalNotes,
-      save
+      totalNotes
     };
   }
 };

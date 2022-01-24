@@ -2,13 +2,13 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <div class="container">
-      <div class="counter">{{ store.state.counter }}</div>
+      <div class="counter">{{ store1.state.counter }}</div>
       <div>
-        {{ store.state.counter }}<sup>2</sup> =
-        {{ store.getters.counterSquared() }}
+        {{ store1.state.counter }}<sup>2</sup> =
+        {{ store1.getters.counterSquared() }}
       </div>
-      <button @click="store.methods.decremente">-</button>
-      <button @click="store.methods.increment">+</button>
+      <button @click="store1.methods.decremente">-</button>
+      <button @click="store1.methods.increment">+</button>
     </div>
   </div>
 </template>
@@ -19,17 +19,12 @@ export default {
   name: "Home",
   components: {},
   setup() {
-    const store = inject("store");
+    const store1 = inject("store1");
 
     return {
-      store
+      store1
     };
   }
-  // data() {
-  //   return {
-  //     counter: 1
-  //   };
-  // }
 };
 </script>
 
