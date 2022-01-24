@@ -32,13 +32,16 @@
 </template>
 
 <script>
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
 export default {
   name: "Movies",
-  components: {},
-  computed: {
-    movies() {
-      return this.$store.getters.getMovies;
-    }
+  setup() {
+    const store = useStore();
+    const movies = computed(() => store.getters.getMovies);
+    return {
+      movies
+    };
   }
 };
 </script>

@@ -1,9 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ $store.state.titleHeaders }}</h1>
-    <ol>
-      <li v-for="(note, index) in notes" :key="index">{{ note }}</li>
-    </ol>
+    <p v-for="(note, index) in notes" :key="index">{{ note }}</p>
     <input type="text" v-model="title" @keypress.enter="save" />
     <h4>Total notes: {{ totalNotes }}</h4>
   </div>
@@ -19,15 +17,15 @@ export default {
     const totalNotes = computed(() => store.getters.totalNotes);
 
     function save() {
-      console.log("titre de la note : " + title.value);
       store.dispatch("saveNote", title.value);
-      console.log(notes.value);
+      console.log("le titre est: " + title.value);
       title.value = "";
     }
 
     return {
       save,
       notes,
+      title,
       totalNotes
     };
   }

@@ -30,6 +30,8 @@
 <script>
 import Review from "@/components/Review.vue";
 import { SET_NOTE } from "@/store/mutations-types";
+import { useStore } from "vuex";
+import { computed, ref } from "vue";
 
 export default {
   name: "Movie",
@@ -37,43 +39,36 @@ export default {
   components: {
     Review
   },
-  created() {
-    this.$store.dispatch("setCurrentMovie", this.id);
-  },
-  computed: {
-    movie: function() {
-      console.log(this.$store.getters.getCurrentMovie);
-      return this.$store.getters.getCurrentMovie;
+  setup() {
+    const store = useStore();
+    const movie = computed(() => store.getters.getCurrentMovie);
+    const reviews = ref([
+      {
+        author: "Jean Bon",
+        date: "Avant hier",
+        comment: "Génial comme film",
+        note: 3
+      },
+      {
+        author: "Lapin du 42",
+        date: "Il y a deux semaines",
+        comment: "Un vrai rafraichissement",
+        note: 4
+      }
+    ]);
+
+    function updateNote(newNote) {
+      store.commit(SET_NOTE, newNote);
     }
-  },
-  data: function() {
     return {
-      reviews: [
-        {
-          author: "Jean Bon",
-          date: "Avant hier",
-          comment: "Génial comme film",
-          note: 3
-        },
-        {
-          author: "Lapin du 42",
-          date: "Il y a deux semaines",
-          comment: "Un vrai rafraichissement",
-          note: 4
-        },
-        {
-          author: "Minette Champlin",
-          date: "Il y a un mois",
-          comment: "Du sucre en conserve",
-          note: 12
-        }
-      ]
+      store,
+      movie,
+      reviews,
+      updateNote
     };
   },
-  methods: {
-    updateNote: function(newNote) {
-      this.$store.commit(SET_NOTE, newNote);
-    }
+  created() {
+    this.$store.dispatch("setCurrentMovie", this.id);
   }
 };
 </script>
