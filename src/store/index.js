@@ -60,6 +60,7 @@ const store = createStore({
             });
             state.currentMovie = movieFound;
         },
+
         [SET_NOTE](state, note) {
             state.currentMovie.note = note;
         },

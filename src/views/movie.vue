@@ -11,6 +11,7 @@
     <router-link :to="{ name: 'movies' }" class="movie__back"
       >← Retour</router-link
     >
+    {{ movie.id }} {{ movie.title }}
     <h1 class="movie__title">{{ movie.title }}</h1>
     <div class="movie__note">
       <span
@@ -59,7 +60,9 @@ export default {
 
     function updateNote(newNote) {
       store.commit(SET_NOTE, newNote);
+      console.log("ID movie value = " + movie.value.id);
     }
+
     return {
       store,
       movie,
@@ -69,6 +72,7 @@ export default {
   },
   created() {
     this.$store.dispatch("setCurrentMovie", this.id);
+    console.log("ID du movie = " + this.id);
   }
 };
 </script>
